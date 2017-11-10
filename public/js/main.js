@@ -38,7 +38,8 @@ function addMessage(body, title) {
 
   var newPostKey = firebase.database().ref().child('stream').push().key;
   firebase.database().ref('/stream/' + newPostKey).set(postData);
-}
+  
+  }
 
 
 // This gets called whenver the form is submitted (check out the index.ejs).
@@ -48,6 +49,10 @@ function handleMessageFormSubmit() {
   var title = $('#new-post-title').val();
 
   addMessage(body, title);
+  $(function(){
+    $('#new-post-title').val('');
+	 $('#new-post-body').val('');
+});
 }
 
 // Gets called whenever the user clicks "sign in" or "sign out".
